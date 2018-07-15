@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		575138C720FB590300F0DA16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575138C620FB590300F0DA16 /* AppDelegate.swift */; };
+		575138C920FB590400F0DA16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575138C820FB590400F0DA16 /* ViewController.swift */; };
+		575138CC20FB590400F0DA16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 575138CA20FB590400F0DA16 /* Main.storyboard */; };
+		575138CE20FB590500F0DA16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 575138CD20FB590500F0DA16 /* Assets.xcassets */; };
+		575138D120FB590500F0DA16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 575138CF20FB590500F0DA16 /* LaunchScreen.storyboard */; };
+		575138DC20FB590500F0DA16 /* Yahoo_Fantasy_SportsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575138DB20FB590500F0DA16 /* Yahoo_Fantasy_SportsTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		575138D820FB590500F0DA16 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 575138BB20FB590000F0DA16 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 575138C220FB590300F0DA16;
+			remoteInfo = "Yahoo Fantasy Sports";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		575138C320FB590300F0DA16 /* Yahoo Fantasy Sports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Yahoo Fantasy Sports.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		575138C620FB590300F0DA16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		575138C820FB590400F0DA16 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		575138CB20FB590400F0DA16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		575138CD20FB590500F0DA16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		575138D020FB590500F0DA16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		575138D220FB590500F0DA16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		575138D720FB590500F0DA16 /* Yahoo Fantasy SportsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Yahoo Fantasy SportsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		575138DB20FB590500F0DA16 /* Yahoo_Fantasy_SportsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yahoo_Fantasy_SportsTests.swift; sourceTree = "<group>"; };
+		575138DD20FB590600F0DA16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		575138C020FB590300F0DA16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		575138D420FB590500F0DA16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		575138BA20FB590000F0DA16 = {
+			isa = PBXGroup;
+			children = (
+				575138C520FB590300F0DA16 /* Yahoo Fantasy Sports */,
+				575138DA20FB590500F0DA16 /* Yahoo Fantasy SportsTests */,
+				575138C420FB590300F0DA16 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		575138C420FB590300F0DA16 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				575138C320FB590300F0DA16 /* Yahoo Fantasy Sports.app */,
+				575138D720FB590500F0DA16 /* Yahoo Fantasy SportsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		575138C520FB590300F0DA16 /* Yahoo Fantasy Sports */ = {
+			isa = PBXGroup;
+			children = (
+				575138C620FB590300F0DA16 /* AppDelegate.swift */,
+				575138C820FB590400F0DA16 /* ViewController.swift */,
+				575138CA20FB590400F0DA16 /* Main.storyboard */,
+				575138CD20FB590500F0DA16 /* Assets.xcassets */,
+				575138CF20FB590500F0DA16 /* LaunchScreen.storyboard */,
+				575138D220FB590500F0DA16 /* Info.plist */,
+			);
+			path = "Yahoo Fantasy Sports";
+			sourceTree = "<group>";
+		};
+		575138DA20FB590500F0DA16 /* Yahoo Fantasy SportsTests */ = {
+			isa = PBXGroup;
+			children = (
+				575138DB20FB590500F0DA16 /* Yahoo_Fantasy_SportsTests.swift */,
+				575138DD20FB590600F0DA16 /* Info.plist */,
+			);
+			path = "Yahoo Fantasy SportsTests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		575138C220FB590300F0DA16 /* Yahoo Fantasy Sports */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 575138E020FB590600F0DA16 /* Build configuration list for PBXNativeTarget "Yahoo Fantasy Sports" */;
+			buildPhases = (
+				575138BF20FB590300F0DA16 /* Sources */,
+				575138C020FB590300F0DA16 /* Frameworks */,
+				575138C120FB590300F0DA16 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Yahoo Fantasy Sports";
+			productName = "Yahoo Fantasy Sports";
+			productReference = 575138C320FB590300F0DA16 /* Yahoo Fantasy Sports.app */;
+			productType = "com.apple.product-type.application";
+		};
+		575138D620FB590500F0DA16 /* Yahoo Fantasy SportsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 575138E320FB590600F0DA16 /* Build configuration list for PBXNativeTarget "Yahoo Fantasy SportsTests" */;
+			buildPhases = (
+				575138D320FB590500F0DA16 /* Sources */,
+				575138D420FB590500F0DA16 /* Frameworks */,
+				575138D520FB590500F0DA16 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				575138D920FB590500F0DA16 /* PBXTargetDependency */,
+			);
+			name = "Yahoo Fantasy SportsTests";
+			productName = "Yahoo Fantasy SportsTests";
+			productReference = 575138D720FB590500F0DA16 /* Yahoo Fantasy SportsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		575138BB20FB590000F0DA16 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = SynergyLabs;
+				TargetAttributes = {
+					575138C220FB590300F0DA16 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 3W4TPJ555T;
+						ProvisioningStyle = Automatic;
+					};
+					575138D620FB590500F0DA16 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 3W4TPJ555T;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 575138C220FB590300F0DA16;
+					};
+				};
+			};
+			buildConfigurationList = 575138BE20FB590000F0DA16 /* Build configuration list for PBXProject "Yahoo Fantasy Sports" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 575138BA20FB590000F0DA16;
+			productRefGroup = 575138C420FB590300F0DA16 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				575138C220FB590300F0DA16 /* Yahoo Fantasy Sports */,
+				575138D620FB590500F0DA16 /* Yahoo Fantasy SportsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		575138C120FB590300F0DA16 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				575138D120FB590500F0DA16 /* LaunchScreen.storyboard in Resources */,
+				575138CE20FB590500F0DA16 /* Assets.xcassets in Resources */,
+				575138CC20FB590400F0DA16 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		575138D520FB590500F0DA16 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		575138BF20FB590300F0DA16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				575138C920FB590400F0DA16 /* ViewController.swift in Sources */,
+				575138C720FB590300F0DA16 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		575138D320FB590500F0DA16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				575138DC20FB590500F0DA16 /* Yahoo_Fantasy_SportsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		575138D920FB590500F0DA16 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 575138C220FB590300F0DA16 /* Yahoo Fantasy Sports */;
+			targetProxy = 575138D820FB590500F0DA16 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		575138CA20FB590400F0DA16 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				575138CB20FB590400F0DA16 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		575138CF20FB590500F0DA16 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				575138D020FB590500F0DA16 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		575138DE20FB590600F0DA16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		575138DF20FB590600F0DA16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		575138E120FB590600F0DA16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3W4TPJ555T;
+				INFOPLIST_FILE = "Yahoo Fantasy Sports/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SynergyLabs.com.Yahoo-Fantasy-Sports";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		575138E220FB590600F0DA16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3W4TPJ555T;
+				INFOPLIST_FILE = "Yahoo Fantasy Sports/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SynergyLabs.com.Yahoo-Fantasy-Sports";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		575138E420FB590600F0DA16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 3W4TPJ555T;
+				INFOPLIST_FILE = "Yahoo Fantasy SportsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SynergyLabs.com.Yahoo-Fantasy-SportsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yahoo Fantasy Sports.app/Yahoo Fantasy Sports";
+			};
+			name = Debug;
+		};
+		575138E520FB590600F0DA16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 3W4TPJ555T;
+				INFOPLIST_FILE = "Yahoo Fantasy SportsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SynergyLabs.com.Yahoo-Fantasy-SportsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yahoo Fantasy Sports.app/Yahoo Fantasy Sports";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		575138BE20FB590000F0DA16 /* Build configuration list for PBXProject "Yahoo Fantasy Sports" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				575138DE20FB590600F0DA16 /* Debug */,
+				575138DF20FB590600F0DA16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		575138E020FB590600F0DA16 /* Build configuration list for PBXNativeTarget "Yahoo Fantasy Sports" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				575138E120FB590600F0DA16 /* Debug */,
+				575138E220FB590600F0DA16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		575138E320FB590600F0DA16 /* Build configuration list for PBXNativeTarget "Yahoo Fantasy SportsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				575138E420FB590600F0DA16 /* Debug */,
+				575138E520FB590600F0DA16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 575138BB20FB590000F0DA16 /* Project object */;
+}
