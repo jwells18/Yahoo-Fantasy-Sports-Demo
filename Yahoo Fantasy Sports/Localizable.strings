@@ -1,0 +1,112 @@
+/* 
+  Localizable.strings
+  Yahoo Fantasy Sports
+
+  Created by Justin Wells on 7/15/18.
+  Copyright © 2018 SynergyLabs. All rights reserved.
+*/
+
+//HomeController
+"fantasy" = "Fantasy";
+"news" = "News";
+"draftCentral" = "Draft Central";
+"addTeam" = "Add Team";
+"fantasyShop" = "Fantasy Shop";
+"profile" = "Profile";
+"pts" = "pts";
+"dailyFantasy" = "Daily Fantasy";
+"dailyFantasySubTitle" = "Win cash in one-day contests.\nPlay now!";
+"editTeamOrder" = "Edit Team Order";
+"sponsored" = "Sponsored";
+
+//Menu Controller
+"accountInfo" = "Account info";
+"accountKey" = "Account key";
+"manageAccounts" = "Manage Accounts";
+"wallet" = "Wallet";
+"fantasyShop" = "Fantasy Shop";
+"settings" = "Settings";
+"help" = "Help";
+"sendFeedback" = "Send Feedback";
+"rateThisApp" = "Rate This App";
+"privacyDashboard" = "Privacy dashboard";
+"joinUs" = "Join Us";
+"yahooSports" = "Yahoo! Sports";
+"options" = "Options";
+"menuBottomTableFooterTitle" = "Terms and Privacy (Updated)";
+"termsOfServiceUpdated" = "Terms of Service (Updated)";
+"privacyPolicyUpdated" = "Privacy Policy (Updated)";
+"credits" = "Credits";
+"cancel" = "Cancel";
+"rateThisAppMessage" = "Are you enjoying the app?";
+"rateThisAppPositive" = "Yes, I love it!";
+"rateThisAppNegative" = "No, it needs work.";
+"nevermind" = "Nevermind";
+"helpURL" = "https://help.yahoo.com/kb/fantasy-sports-app-for-ios";
+"yahooSportsAppURL" = "https://itunes.apple.com/us/app/yahoo-sports-scores-news/id286058814?mt=8";
+"fantasyShopURL" = "https://football.fantasysports.yahoo.com/f1/shop";
+
+//Daily Fantasy Controller
+"lobby" = "Lobby";
+"myContests" = "My Contests";
+"myLeagues" = "My Leagues";
+"research" = "Research";
+"balance" = "Balance";
+"contests" = "Contests";
+"leagues" = "Leagues";
+"winning" = "Winning";
+"live" = "Live";
+"upcoming" = "Upcoming";
+"completed" = "Completed";
+"active" = "Active";
+"dailyFantasyMyContestsEmptyView" = "Enter some leagues\non the lobby page";
+"dailyFantasyMyLeaguesEmptyView" = "Enter some leagues\non the lobby page";
+"dailyFantasyResearchEmptyView" = "No contests available for selected date.\nPlease select some other sport or date.";
+"createContests" = "Create Contests";
+"dailyFantasyLobbyDisclaimer" = "Apple Inc, NFL, NBA, MLB, NHL, UCL, EPL, La Liga, and MLS are not sponsors of, nor are any of them affiliated with, Yahoo Sports Daily Fantasy in any way.";
+"viewAll" = "View All";
+
+//League Controller
+"myTeam" = "My Team";
+"standings" = "Standings";
+"players" = "Players";
+"league" = "Leagues";
+"myWatchlist" = "My Watchlist";
+"comparePlayers" = "Compare Players";
+"nflNews" = "NFL News";
+"rotoArcade" = "Roto Arcade";
+"transactions" = "Transactions";
+"proposeTrade" = "ProposeTrade";
+"draft" = "Draft";
+"messageBoard" = "Message Board";
+"tools" = "Tools";
+"editLeagueSettings" = "Edit league settings";
+"inviteYourFriends" = "Invite your friends";
+"editDraftTime" = "Edit draft time";
+"inviteFriendsToYourLeague" = "Invite friends to your league";
+"copyLink" = "Copy Link";
+"share" = "Share";
+"allPositions" = "All Positions";
+"qb" = "QB";
+"wr" = "WR";
+"rb" = "RB";
+"te" = "TE";
+"w/r/t" = "W/R/T";
+"k" = "K";
+"def" = "DEF";
+"filter" = "Filter";
+"searchByPlayerName" = "Search by player name";
+"topAvailablePlayers" = "Top Available Players";
+"transactionTrends" = "Transaction Trends";
+
+//League Menu Controller
+"playNow" = "Play Now";
+"dailyFantasyLeagueMenuSubTitle" = "Play for free or in cash contests.";
+
+//Messaging Controller
+"search" = "Search";
+
+//Feature Unavailable
+"sorry" = "Sorry";
+"featureUnavailableMessage" = "This feature is unavailable";
+"ok" = "OK";

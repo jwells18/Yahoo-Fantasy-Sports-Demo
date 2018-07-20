@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G20015" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Team" representedClassName="Team" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="leagueId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="leagueName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="memberIds" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="points" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="contests" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teams" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="Team" positionX="-45" positionY="81" width="128" height="180"/>
+    </elements>
+</model>
