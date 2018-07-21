@@ -112,6 +112,7 @@
 		57A3830D21028AB00066C188 /* DBChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3830C21028AB00066C188 /* DBChat.swift */; };
 		57A3830F21028AD60066C188 /* DBTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3830E21028AD60066C188 /* DBTeam.swift */; };
 		57A383132102B1000066C188 /* YahooFantasySportsPreviewGIF.gif in Resources */ = {isa = PBXBuildFile; fileRef = 57A383122102B1000066C188 /* YahooFantasySportsPreviewGIF.gif */; };
+		57A383152102B3840066C188 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 57A383102102A74B0066C188 /* README.md */; };
 		624CBA808273E68F469184F9 /* Pods_Yahoo_Fantasy_SportsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D3C9A2B180CF0CD7253491 /* Pods_Yahoo_Fantasy_SportsTests.framework */; };
 		8C815A68144DFF1AA05CAD1D /* Pods_Yahoo_Fantasy_Sports.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A9DEE0E4A7E0E822D2D87C /* Pods_Yahoo_Fantasy_Sports.framework */; };
 /* End PBXBuildFile section */
@@ -1053,6 +1054,7 @@
 				57A382F221022F840066C188 /* UserManager.swift in Sources */,
 				57A382FD21022FEC0066C188 /* ChatManager.swift in Sources */,
 				57A382E921022A930066C188 /* Player.swift in Sources */,
+				57A383152102B3840066C188 /* README.md in Sources */,
 				578FF6BC20FE57360087ED4D /* YHEmptyView.swift in Sources */,
 				57A382ED21022B770066C188 /* DailyFantasyLeague.swift in Sources */,
 				579AA57A21001C9D000D8399 /* DailyLobbyFantasyContestTableFooter.swift in Sources */,
