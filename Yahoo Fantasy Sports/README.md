@@ -12,7 +12,7 @@ NOTE: The demo is not finished as of the last commit, but I wanted to upload it 
 - Core Animation
 - iOS Design principles
 - Third Party dependencies (includes CocoaPods)
-- Objective C
+- Swift 3
 - Networking (powered by Firebase)
 - Realm 
 - Data management 
