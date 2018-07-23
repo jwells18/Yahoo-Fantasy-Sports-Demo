@@ -110,8 +110,6 @@
 		57A3830B210264BC0066C188 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3830A210264BC0066C188 /* DateManager.swift */; };
 		57A3830D21028AB00066C188 /* DBChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3830C21028AB00066C188 /* DBChat.swift */; };
 		57A3830F21028AD60066C188 /* DBTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A3830E21028AD60066C188 /* DBTeam.swift */; };
-		57A383132102B1000066C188 /* YahooFantasySportsPreviewGIF.gif in Resources */ = {isa = PBXBuildFile; fileRef = 57A383122102B1000066C188 /* YahooFantasySportsPreviewGIF.gif */; };
-		57A383152102B3840066C188 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 57A383102102A74B0066C188 /* README.md */; };
 		57F42C232105DC4300AD19C5 /* NumberManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F42C222105DC4000AD19C5 /* NumberManager.swift */; };
 		624CBA808273E68F469184F9 /* Pods_Yahoo_Fantasy_SportsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D3C9A2B180CF0CD7253491 /* Pods_Yahoo_Fantasy_SportsTests.framework */; };
 		8C815A68144DFF1AA05CAD1D /* Pods_Yahoo_Fantasy_Sports.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73A9DEE0E4A7E0E822D2D87C /* Pods_Yahoo_Fantasy_Sports.framework */; };
@@ -239,8 +237,6 @@
 		57A3830A210264BC0066C188 /* DateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		57A3830C21028AB00066C188 /* DBChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBChat.swift; sourceTree = "<group>"; };
 		57A3830E21028AD60066C188 /* DBTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBTeam.swift; sourceTree = "<group>"; };
-		57A383102102A74B0066C188 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		57A383122102B1000066C188 /* YahooFantasySportsPreviewGIF.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = YahooFantasySportsPreviewGIF.gif; sourceTree = "<group>"; };
 		57F42C222105DC4000AD19C5 /* NumberManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberManager.swift; sourceTree = "<group>"; };
 		73A9DEE0E4A7E0E822D2D87C /* Pods_Yahoo_Fantasy_Sports.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yahoo_Fantasy_Sports.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3C72C81A21AE3C146EA050D /* Pods-Yahoo Fantasy SportsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yahoo Fantasy SportsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yahoo Fantasy SportsTests/Pods-Yahoo Fantasy SportsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -348,8 +344,6 @@
 				575138CF20FB590500F0DA16 /* LaunchScreen.storyboard */,
 				57A382E2210228670066C188 /* GoogleService-Info.plist */,
 				575138D220FB590500F0DA16 /* Info.plist */,
-				57A383102102A74B0066C188 /* README.md */,
-				57A383122102B1000066C188 /* YahooFantasySportsPreviewGIF.gif */,
 			);
 			path = "Yahoo Fantasy Sports";
 			sourceTree = "<group>";
@@ -873,7 +867,6 @@
 			files = (
 				575138D120FB590500F0DA16 /* LaunchScreen.storyboard in Resources */,
 				575138F020FBB9C400F0DA16 /* Localizable.strings in Resources */,
-				57A383132102B1000066C188 /* YahooFantasySportsPreviewGIF.gif in Resources */,
 				575138CE20FB590500F0DA16 /* Assets.xcassets in Resources */,
 				575138CC20FB590400F0DA16 /* Main.storyboard in Resources */,
 				57A382E3210228680066C188 /* GoogleService-Info.plist in Resources */,
@@ -1055,7 +1048,6 @@
 				57A382F221022F840066C188 /* UserManager.swift in Sources */,
 				57A382FD21022FEC0066C188 /* ChatManager.swift in Sources */,
 				57A382E921022A930066C188 /* Player.swift in Sources */,
-				57A383152102B3840066C188 /* README.md in Sources */,
 				578FF6BC20FE57360087ED4D /* YHEmptyView.swift in Sources */,
 				57A382ED21022B770066C188 /* DailyFantasyLeague.swift in Sources */,
 				579AA57A21001C9D000D8399 /* DailyLobbyFantasyContestTableFooter.swift in Sources */,

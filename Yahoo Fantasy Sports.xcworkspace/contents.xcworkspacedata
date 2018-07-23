@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:README.md">
+   </FileRef>
+   <FileRef
+      location = "group:Yahoo Fantasy Sports/YahooFantasySportsPreviewGIF.gif">
+   </FileRef>
+   <FileRef
       location = "group:Yahoo Fantasy Sports.xcodeproj">
    </FileRef>
    <FileRef
