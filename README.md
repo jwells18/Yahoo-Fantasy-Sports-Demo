@@ -1,7 +1,7 @@
 # Yahoo-Fantasy-Sports-Demo
 This is a sample project created to demonstrate some core competencies and design principles for an Oath Fantasy Mobile iOS Developer position.
 
-![alt text](https://github.com/jwells18/Yahoo-Fantasy-Sports-Demo/blob/master/Yahoo%20Fantasy%20Sports/YahooFantasySportsPreviewGIF.gif)
+![alt text](https://github.com/jwells18/Yahoo-Fantasy-Sports-Demo/blob/master/YahooFantasySportsPreviewGIF.gif)
 
 # Featured Competencies
 
