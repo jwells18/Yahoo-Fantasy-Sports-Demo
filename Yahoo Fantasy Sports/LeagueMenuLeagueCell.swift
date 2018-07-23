@@ -120,12 +120,17 @@ class LeagueMenuLeagueCell: UICollectionViewCell{
         self.mainImageView.layer.cornerRadius = self.mainImageView.frame.width/cornerRadiusDivisor
     }
     
-    func configure(){
-        self.mainImageView.image = UIImage(named: "footballLeaguePlaceholder")
-        self.titleLabel.text = "Morgan Stanley Team"
-        self.subTitleLabel.text = "LA Accountants League"
-        self.pointsLabel.text = String(format: "%@ %@", "0", "pts".localized())
-        self.sportImageView.image = UIImage(named: "footballLeague")?.withRenderingMode(.alwaysTemplate)
+    func configure(team: DBTeam){
+        if team.image != nil{
+            mainImageView.sd_setImage(with: URL(string: (team.image)!), placeholderImage: UIImage(named: "footballLeaguePlaceholder"))
+        }
+        else{
+            mainImageView.image = UIImage(named: "footballLeaguePlaceholder")
+        }
+        self.titleLabel.text = String(format: "%@ %@", team.name, "team".localized())
+        self.subTitleLabel.text = team.leagueName
+        self.pointsLabel.text = String(format: "%@ %@", String(Int(team.points)), "pts".localized())
+        self.sportImageView.image = UIImage(named: team.sport)?.withRenderingMode(.alwaysTemplate)
         self.sportImageView.tintColor = .darkGray
     }
 }

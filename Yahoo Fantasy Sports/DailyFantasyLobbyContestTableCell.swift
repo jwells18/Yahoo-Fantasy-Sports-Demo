@@ -82,13 +82,10 @@ class DailyFantasyLobbyContestTableCell: UITableViewCell{
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[spacerViewTop(==spacerViewBottom)][titleLabel][subTitleLabel][spacerViewBottom(==spacerViewTop)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict))
     }
     
-    func configure(){
-        self.titleLabel.text = "NFL $25K Guaranteed [$5K to 1st]"
-        self.subTitleLabel.text = "$7 Entry | $25,000 Prizes | 222/4.1K Entries | Tomorrow, 7:05PM"
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        //self.mainImageButton.layer.cornerRadius = self.mainImageButton.frame.width/cornerRadiusDivisor
+    func configure(contest: DailyFantasyContest?){
+        if(contest != nil){
+            self.titleLabel.text = contest?.name
+            self.subTitleLabel.text = String(format: "%@ %@ | %@ %@ | %@/%@ %@ | %@", contest?.entryFee.shortNumberString(style: .currency) ?? "--", "entry".localized(), contest?.totalPrize.shortNumberString(style: .currency) ?? "--", "prizes".localized(), contest?.entryCount.stringValue ?? "--", contest?.entryLimit.stringValue ?? "--", "entries".localized(), contest?.startDate.dayAndTime() ?? "--")
+        }
     }
 }

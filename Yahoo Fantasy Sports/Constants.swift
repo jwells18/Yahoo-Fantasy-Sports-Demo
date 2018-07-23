@@ -36,24 +36,27 @@ public func UIColorFromRGB(_ rgbValue: UInt) -> UIColor {
 }
 
 //Database Constants
-var testUserEmail = "johnsmith@gmail.com"
-var testUserPassword = "password1"
-var userDatabase = "YHUser"
-var userPrimaryKey = "objectId"
-var leagueDatabase = "YHLeague"
-var leaguePrimaryKey = "objectId"
-var playerDatabase = "YHPlayer"
-var playerPrimaryKey = "objectId"
-var teamDatabase = "YHTeam"
-var teamPrimaryKey = "objectId"
-var dailyFantasyContestDatabase = "YHDailyFantasyContest"
-var dailyFantasyContestPrimaryKey = "objectId"
-var dailyFantasyLeagueDatabase = "YHDailyFantasyLeague"
-var dailyFantasyLeaguePrimaryKey = "objectId"
-var chatDatabase = "YHChat"
-var chatPrimaryKey = "objectId"
+let testUserEmail = "johnsmith@gmail.com"
+let testUserPassword = "password1"
+let paginationLimit = UInt(15)
+let paginationUpperLimit = 150
+let userDatabase = "YHUser"
+let userPrimaryKey = "objectId"
+let leagueDatabase = "YHLeague"
+let leaguePrimaryKey = "objectId"
+let playerDatabase = "YHPlayer"
+let playerPrimaryKey = "objectId"
+let teamDatabase = "YHTeam"
+let teamPrimaryKey = "objectId"
+let dailyFantasyContestDatabase = "YHDailyFantasyContest"
+let dailyFantasyContestPrimaryKey = "objectId"
+let dailyFantasyLeagueDatabase = "YHDailyFantasyLeague"
+let dailyFantasyLeaguePrimaryKey = "objectId"
+let chatDatabase = "YHChat"
+let chatPrimaryKey = "objectId"
 
 //Arrays
+//TODO: Refactor out of constants file
 var homeNavigationItems = [YHNavigationCollectionItem(image: UIImage(named: "news")!, title: "news".localized()), YHNavigationCollectionItem(image: UIImage(named: "draftCentral")!, title: "draftCentral".localized()), YHNavigationCollectionItem(image: UIImage(named: "addTeam")!, title: "addTeam".localized()), YHNavigationCollectionItem(image: UIImage(named: "fantasyShop")!, title: "fantasyShop".localized()), YHNavigationCollectionItem(image: UIImage(named: "profile")!, title: "profile".localized())]
 var dailyFantasyLobbySegmentedTitles = ["contests".localized(), "leagues".localized()]
 var dailyFantasyMyContestsSegmentedTitles = ["live".localized(), "upcoming".localized(), "completed".localized()]

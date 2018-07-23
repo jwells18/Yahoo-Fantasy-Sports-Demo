@@ -14,7 +14,7 @@ class RealmManager: NSObject{
     func setDefaultRealmForEmployee(uid: String) {
         var config = Realm.Configuration()
         
-        //Realm default configuration for each employee
+        //Realm default configuration for each user
         config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("\(uid).realm")
         Realm.Configuration.defaultConfiguration = config
     }

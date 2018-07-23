@@ -123,11 +123,20 @@ class DailyFantasyLobbyLeaguesCell: UICollectionViewCell{
         self.addConstraints([NSLayoutConstraint.init(item: accessoryImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20)])
     }
     
-    func configure(league: League?){
-        headerImageView.image = UIImage(named: "footballLeague")?.withRenderingMode(.alwaysTemplate)
-        headerTitleLabel.text = "NFL Yahoo Cup"
-        headerSubTitleLabel.text = "17 rounds"
-        titleLabel.text = "Enter league for free"
-        subTitleLabel.text = "Free entry | $150,000 Prizes | 13.6K/1.0M Entries"
+    func configure(league: DailyFantasyLeague?){
+        if(league != nil){
+            headerImageView.image = UIImage(named: league?.sport.rawValue ?? "")?.withRenderingMode(.alwaysTemplate)
+            headerTitleLabel.text = league?.name
+            headerSubTitleLabel.text = String(format: "%@ %@", league?.totalRounds.stringValue ?? "0", "rounds".localized())
+            titleLabel.text = "enterLeagueForFree".localized()
+            var entryFee = "--"
+            if league?.entryFee == 0{
+                entryFee = "free".localized()
+            }
+            else if league?.entryFee.intValue ?? 0 > 0{
+                entryFee = league?.entryFee.shortNumberString(style: .currency) ?? ""
+            }
+            subTitleLabel.text = String(format: "%@ %@ | %@ %@ | %@/%@ %@", entryFee, "entry".localized(), league?.totalPrize.shortNumberString(style: .currency) ?? "", "prizes".localized(), league?.entryCount.shortNumberString(style: .none) ?? "", league?.entryLimit.shortNumberString(style: .none) ?? "", "entries".localized())
+        }
     }
 }

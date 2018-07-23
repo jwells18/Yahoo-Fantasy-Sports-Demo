@@ -18,6 +18,7 @@ class LeaguePlayersTransactionTrendsCell: UICollectionViewCell, UITableViewDataS
     var headerView = LeaguePlayersTableHeader()
     private let cellIdentifier = "cell"
     var tableView = UITableView()
+    var players = [Player]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,8 +70,9 @@ class LeaguePlayersTransactionTrendsCell: UICollectionViewCell, UITableViewDataS
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[headerView(40)][tableView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict))
     }
     
-    func configure(){
-        
+    func configure(players: [Player]){
+        self.players = players//.prefix(3)
+        self.tableView.reloadData()
     }
     
     //TableView DataSource
@@ -79,7 +81,7 @@ class LeaguePlayersTransactionTrendsCell: UICollectionViewCell, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return self.players.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -98,7 +100,7 @@ class LeaguePlayersTransactionTrendsCell: UICollectionViewCell, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! LeaguePlayersPlayerTableCell
-        cell.configure()
+        cell.configure(player: players[indexPath.row], rank: nil)
         return cell
     }
     

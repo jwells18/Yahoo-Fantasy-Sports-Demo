@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -96,7 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupDailyFantasyController() -> UIViewController{
         let blankVC = UIViewController()
-        blankVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "footballLeaguePlaceholder")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
+        blankVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "yahooDailyFantasyLogo1")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
         blankVC.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
         let navVC1 = YHGradientNavigationController.init(rootViewController: blankVC, colors: [YHColor.blue.cgColor, YHColor.green.cgColor])
         let dailyFantasyLobbyVC = DailyFantasyLobbyController()
@@ -114,18 +115,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return tabBarVC
     }
     
-    func setupLeagueController() -> UIViewController{
+    func setupLeagueController(team: DBTeam) -> UIViewController{
         let blankVC = UIViewController()
-        blankVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "footballLeaguePlaceholder")?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
+        blankVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: String(format: "%@%@",team.sport,"LeaguePlaceholder"))?.withRenderingMode(.alwaysOriginal), selectedImage: nil)
         blankVC.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
         let navVC1 = YHGradientNavigationController.init(rootViewController: blankVC, colors: [YHColor.red.cgColor, YHColor.darkRed.cgColor])
-        let leagueMyTeamVC = LeagueMyTeamController()
+        let leagueMyTeamVC = LeagueMyTeamController(team: team)
         let navVC2 = YHGradientNavigationController.init(rootViewController: leagueMyTeamVC, colors: [YHColor.red.cgColor, YHColor.darkRed.cgColor])
-        let leagueStandingsVC = LeagueStandingsController()
+        let leagueStandingsVC = LeagueStandingsController(team: team)
         let navVC3 = YHGradientNavigationController.init(rootViewController: leagueStandingsVC, colors: [YHColor.red.cgColor, YHColor.darkRed.cgColor])
-        let leaguePlayersVC = LeaguePlayersController()
+        let leaguePlayersVC = LeaguePlayersController(team: team)
         let navVC4 = YHGradientNavigationController.init(rootViewController: leaguePlayersVC, colors: [YHColor.red.cgColor, YHColor.darkRed.cgColor])
-        let leagueLeagueVC = LeagueLeagueController()
+        let leagueLeagueVC = LeagueLeagueController(team: team)
         let navVC5 = YHGradientNavigationController.init(rootViewController: leagueLeagueVC, colors: [YHColor.red.cgColor, YHColor.darkRed.cgColor])
         let tabBarVC = YHTabBarController()
         tabBarVC.viewControllers = [navVC1, navVC2, navVC3, navVC4, navVC5]
@@ -145,6 +146,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Setup Data Observers
         let userManager = UserManager()
         userManager.createDataObservers()
+        let teamManager = TeamManager()
+        teamManager.createDataObservers()
+        let chatManager = ChatManager()
+        chatManager.createDataObservers()
     }
     
     func setRootController(viewController: UIViewController){

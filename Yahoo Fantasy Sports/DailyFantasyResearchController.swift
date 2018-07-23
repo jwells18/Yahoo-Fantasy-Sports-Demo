@@ -64,7 +64,7 @@ class DailyFantasyResearchController: UIViewController, UICollectionViewDataSour
     }
     
     func setupResearchView(){
-        self.researchView.headerView.configure(league: "SOCCER", date: nil)
+        self.researchView.headerView.configure(league: Sport.soccer.rawValue.uppercased(), date: Date())
         self.researchView.headerView.leagueButton.addTarget(self, action: #selector(leagueButtonPressed), for: .touchUpInside)
         self.researchView.headerView.leagueDropDownButton.addTarget(self, action: #selector(leagueDropDownButtonPressed), for: .touchUpInside)
         self.researchView.headerView.dateForwardButton.addTarget(self, action: #selector(dateForwardButtonPressed), for: .touchUpInside)

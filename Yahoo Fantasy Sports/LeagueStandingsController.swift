@@ -10,10 +10,17 @@ import UIKit
 
 class LeagueStandingsController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
+    var currentDBUser: DBUser!
+    var team: DBTeam!
     var navigationTitleView = YHDetailTitleView()
     var standingsView = LeagueStandingsView()
     private let advertisementCellIdentifier = "advertisementCell"
     private let standingsCellIdentifier = "standingsCell"
+    
+    convenience init(team: DBTeam) {
+        self.init()
+        self.team = team
+    }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -27,6 +34,10 @@ class LeagueStandingsController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Set Current User
+        let userManager = UserManager()
+        self.currentDBUser = userManager.getCurrentDBUser()
+        
         //Setup NavigationBar
         self.setupNavigationBar()
         
@@ -37,7 +48,7 @@ class LeagueStandingsController: UIViewController, UITableViewDataSource, UITabl
     func setupNavigationBar(){
         //Setup Navigation Items
         self.navigationTitleView.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
-        self.navigationTitleView.configure(title: "Morgan Stanley Team", subTitle: "LA Accountants League")
+        self.navigationTitleView.configure(title: String(format: "%@ %@", team.name, "team".localized()), subTitle: String(format: "%@ %@", team.leagueName, "league".localized()))
         self.navigationItem.titleView = self.navigationTitleView
         
         let homeBtn = YHBarButton(image: UIImage(named: "home"))
@@ -86,11 +97,11 @@ class LeagueStandingsController: UIViewController, UITableViewDataSource, UITabl
     
     //Data
     func downloadData(){
-        
+        //TODO: download data
     }
     
     func refreshData(){
-        
+        self.standingsView.refreshControl.endRefreshing()
     }
     
     //TableView DataSource
@@ -121,7 +132,7 @@ class LeagueStandingsController: UIViewController, UITableViewDataSource, UITabl
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: standingsCellIdentifier, for: indexPath) as! LeagueStandingsCell
-            cell.configure()
+            cell.configure(team: self.team, user: self.currentDBUser)
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: advertisementCellIdentifier, for: indexPath) as! YHAdvertisementTableCell

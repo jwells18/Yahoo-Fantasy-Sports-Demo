@@ -205,10 +205,16 @@ class DailyFantasyLobbyHeader: UIView{
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.userButton.layer.cornerRadius = 50/cornerRadiusDivisor//self.userButton.frame.width/cornerRadiusDivisor
+        self.userButton.layer.cornerRadius = 50/cornerRadiusDivisor
     }
     
-    func configure(){
+    func configure(user: DBUser?){
+        if user?.image != nil{
+            self.userButton.sd_setImage(with: URL(string: (user?.image)!), for: .normal, completed: nil)
+        }
+        else{
+            self.userButton.setImage(UIImage(named: "userImagePlaceholder"), for: .normal)
+        }
         self.winningCountLabel.text = "$0"
         self.liveCountLabel.text = "0"
         self.upcomingCountLabel.text = "0"

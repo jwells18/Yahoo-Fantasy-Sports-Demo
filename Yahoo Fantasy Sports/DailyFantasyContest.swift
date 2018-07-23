@@ -12,6 +12,7 @@ class DailyFantasyContest: NSObject{
     var objectId: String!
     var createdAt: Date!
     var updatedAt: Date!
+    var name: String!
     var startDate: Date!
     var endDate: Date!
     var entryFee: NSNumber!

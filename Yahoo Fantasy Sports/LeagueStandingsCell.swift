@@ -90,9 +90,14 @@ class LeagueStandingsCell: UITableViewCell{
         self.mainImageView.layer.cornerRadius = self.mainImageView.frame.width/cornerRadiusDivisor
     }
     
-    func configure(){
-        self.mainImageView.image = UIImage(named: "footballLeaguePlaceholder")
-        self.titleLabel.text = "Morgan Stanley Team"
-        self.subTitleLabel.text = "Oliver"
+    func configure(team: DBTeam, user: DBUser){
+        if team.image != nil{
+            mainImageView.sd_setImage(with: URL(string: (team.image)!), placeholderImage: UIImage(named: "footballLeaguePlaceholder"))
+        }
+        else{
+            mainImageView.image = UIImage(named: "footballLeaguePlaceholder")
+        }
+        self.titleLabel.text = String(format: "%@ %@", team.name, "team".localized())
+        self.subTitleLabel.text = user.firstName
     }
 }

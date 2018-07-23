@@ -144,19 +144,18 @@ class LeagueMyTeamSummaryCell: UITableViewCell{
     override func layoutSubviews() {
         super.layoutSubviews()
         //Set Frames
-        self.mainImageView.layer.cornerRadius = 50/cornerRadiusDivisor //self.mainImageView.frame.width/cornerRadiusDivisor
+        self.mainImageView.layer.cornerRadius = 50/cornerRadiusDivisor
     }
     
-    func configure(league: League?){
-        //Set MainContainerView
-        if league?.image != nil{
-            mainImageView.sd_setImage(with: URL(string: (league?.image)!), placeholderImage: UIImage(named: "footballLeaguePlaceholder"))
+    func configure(team: DBTeam, user: DBUser){
+        if team.image != nil{
+            mainImageView.sd_setImage(with: URL(string: (team.image)!), placeholderImage: UIImage(named: "footballLeaguePlaceholder"))
         }
         else{
             mainImageView.image = UIImage(named: "footballLeaguePlaceholder")
         }
-        mainTitleLabel.text = "Morgan Stanley Team"//league?.name
-        mainSubTitleLabel.text = "Oliver"
+        mainTitleLabel.text = String(format: "%@ %@", team.name, "team".localized())
+        mainSubTitleLabel.text = user.firstName
     }
     
     //Button Delegates

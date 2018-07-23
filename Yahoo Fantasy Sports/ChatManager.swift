@@ -20,6 +20,15 @@ class ChatManager: NSObject{
         let dbChats = realm.objects(DBChat.self).sorted(byKeyPath: "updatedAt", ascending: false)
         completionHandler(dbChats)
     }
+    
+    func searchMessages(searchText: String, completionHandler:@escaping (Results<DBChat>?) -> Void){
+        //Load Available Inventory
+        let realm = try! Realm()
+        let realmPredicate = NSPredicate(format: "name CONTAINS[cd] %@ OR lastMessage CONTAINS[cd] %@", searchText, searchText)
+        let dbItems = realm.objects(DBChat.self).filter(realmPredicate).sorted(byKeyPath: "updatedAt", ascending: false)
+        
+        completionHandler(dbItems)
+    }
 }
 
 extension ChatManager{

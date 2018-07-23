@@ -11,12 +11,17 @@ import HMSegmentedControl
 
 class DailyFantasyLobbyController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DailyFantasyLobbyContestCellDelegate{
     
+    var currentDBUser: DBUser!
     private let contestCellIdentifier = "contestCell"
     private let createContestCellIdentifier = "createContestCell"
     private let disclaimerCellIdentifier = "disclaimerCell"
     private let leaguesCellIdentifier = "leaguesCell"
     private var navigationTitleView = YHDetailTitleView()
     private var lobbyView = DailyFantasyLobbyView()
+    private var isInitialContestsDownload = true
+    private var isInitialLeaguesDownload = true
+    private var dailyFantasyContests = [[DailyFantasyContest]]()
+    private var dailyFantasyLeagues = [DailyFantasyLeague]()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -30,11 +35,18 @@ class DailyFantasyLobbyController: UIViewController, UICollectionViewDataSource,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Set Current Employee
+        let userManager = UserManager()
+        self.currentDBUser = userManager.getCurrentDBUser()
+        
         //Setup NavigationBar
         self.setupNavigationBar()
         
         //Setup View
         self.setupView()
+        
+        //Download Data
+        self.downloadData()
     }
     
     func setupNavigationBar(){
@@ -65,7 +77,7 @@ class DailyFantasyLobbyController: UIViewController, UICollectionViewDataSource,
     }
     
     func setupLobbyView(){
-        self.lobbyView.headerView.configure()
+        self.lobbyView.headerView.configure(user: self.currentDBUser)
         self.lobbyView.headerView.userButton.addTarget(self, action: #selector(headerUserButtonPressed(sender:)), for: .touchUpInside)
         self.lobbyView.headerView.segmentedControl.addTarget(self, action: #selector(segmentedControlChangedValue), for: .valueChanged)
         self.lobbyView.collectionView.dataSource = self
@@ -86,26 +98,123 @@ class DailyFantasyLobbyController: UIViewController, UICollectionViewDataSource,
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[lobbyView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict))
     }
     
+    func downloadData(){
+        switch lobbyView.headerView.segmentedControl.selectedSegmentIndex{
+        case 0:
+            switch isInitialContestsDownload{
+            case true:
+                self.downloadContestsData()
+            case false:
+                self.lobbyView.collectionView.reloadData()
+            }
+            break
+        case 1:
+            switch isInitialLeaguesDownload{
+            case true:
+                self.downloadLeaguesData()
+            case false:
+                self.lobbyView.collectionView.reloadData()
+            }
+            break
+        default:
+            break
+        }
+    }
+    
+    func downloadContestsData(){
+        //Start Downloading ActivityView
+        if isInitialContestsDownload{
+            self.lobbyView.downloadingActivityView.startAnimating()
+        }
+        
+        //Change Initial Download Bool
+        isInitialContestsDownload = false
+        
+        let dailyFantasyManager = DailyFantasyManager()
+        dailyFantasyManager.downloadDailyFantasyContests { (dailyFantasyContests) in
+            
+            //Stop Downloading ActivityView
+            if(self.lobbyView.downloadingActivityView.isAnimating){
+                self.lobbyView.downloadingActivityView.stopAnimating()
+            }
+            
+            self.dailyFantasyContests = dailyFantasyContests
+            
+            //Show Empty View (if necessary)
+            if self.dailyFantasyContests.count > 0{
+                self.lobbyView.collectionView.backgroundView = nil
+            }
+            else{
+                let emptyView = YHEmptyView(image: UIImage(), title: "Empty", tabBarHeight: self.tabBarController?.tabBar.frame.height)
+                self.lobbyView.collectionView.backgroundView = emptyView
+            }
+            
+            self.lobbyView.collectionView.reloadData()
+        }
+    }
+    
+    func downloadLeaguesData(){
+        //Start Downloading ActivityView
+        if isInitialLeaguesDownload{
+            self.lobbyView.downloadingActivityView.startAnimating()
+        }
+        
+        //Change Initial Download Bool
+        isInitialLeaguesDownload = false
+        
+        let dailyFantasyManager = DailyFantasyManager()
+        dailyFantasyManager.downloadDailyFantasyLeagues { (dailyFantasyLeagues) in
+            
+            //Stop Downloading ActivityView
+            if(self.lobbyView.downloadingActivityView.isAnimating){
+                self.lobbyView.downloadingActivityView.stopAnimating()
+            }
+            
+            self.dailyFantasyLeagues = dailyFantasyLeagues
+            
+            //Show Empty View (if necessary)
+            if self.dailyFantasyLeagues.count > 0{
+                self.lobbyView.collectionView.backgroundView = nil
+            }
+            else{
+                let emptyView = YHEmptyView(image: UIImage(), title: "Empty", tabBarHeight: self.tabBarController?.tabBar.frame.height)
+                self.lobbyView.collectionView.backgroundView = emptyView
+            }
+            
+            self.lobbyView.collectionView.reloadData()
+        }
+    }
+    
     //CollectionView DataSource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        switch lobbyView.headerView.segmentedControl.selectedSegmentIndex{
+        case 0:
+            switch self.dailyFantasyContests.count > 0{
+            case true:
+                return self.dailyFantasyContests.count+2
+            case false:
+                return 0
+            }
+        case 1:
+            return self.dailyFantasyLeagues.count
+        default:
+            return 0
+        }
     }
     
     func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         switch lobbyView.headerView.segmentedControl.selectedSegmentIndex{
         case 0:
             switch indexPath.item{
-            case 0:
+            case _ where indexPath.item <= self.dailyFantasyContests.count-1:
                 return CGSize(width: collectionView.frame.width-16, height: 220)
-            case 1:
-                return CGSize(width: collectionView.frame.width-16, height: 220)
-            case 2:
+            case _ where indexPath.item == self.dailyFantasyContests.count:
                 return CGSize(width: collectionView.frame.width-16, height: 50)
-            case 3:
+            case _ where indexPath.item == self.dailyFantasyContests.count+1:
                 return CGSize(width: collectionView.frame.width-16, height: 80)
             default:
                 return .zero
@@ -121,20 +230,15 @@ class DailyFantasyLobbyController: UIViewController, UICollectionViewDataSource,
         switch lobbyView.headerView.segmentedControl.selectedSegmentIndex{
         case 0:
             switch indexPath.item{
-            case 0:
+            case _ where indexPath.item <= self.dailyFantasyContests.count-1:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: contestCellIdentifier, for: indexPath) as! DailyFantasyLobbyContestCell
                 cell.dailyFantasyLobbyContestCellDelegate = self
-                cell.configure()
+                cell.configure(contests: dailyFantasyContests[indexPath.row])
                 return cell
-            case 1:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: contestCellIdentifier, for: indexPath) as! DailyFantasyLobbyContestCell
-                cell.dailyFantasyLobbyContestCellDelegate = self
-                cell.configure()
-                return cell
-            case 2:
+            case _ where indexPath.item == self.dailyFantasyContests.count:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: createContestCellIdentifier, for: indexPath) as! DailyFantasyLobbyCreateContestCell
                 return cell
-            case 3:
+            case _ where indexPath.item == self.dailyFantasyContests.count+1:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: disclaimerCellIdentifier, for: indexPath) as! DailyFantasyLobbyDisclaimerCell
                 return cell
             default:
@@ -143,7 +247,7 @@ class DailyFantasyLobbyController: UIViewController, UICollectionViewDataSource,
             }
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: leaguesCellIdentifier, for: indexPath) as! DailyFantasyLobbyLeaguesCell
-            cell.configure(league: nil)
+            cell.configure(league: dailyFantasyLeagues[indexPath.row])
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: createContestCellIdentifier, for: indexPath) as! DailyFantasyLobbyCreateContestCell
@@ -171,7 +275,7 @@ class DailyFantasyLobbyController: UIViewController, UICollectionViewDataSource,
     
     //Segmented Control Delegate
     func segmentedControlChangedValue(segmentedControl: HMSegmentedControl){
-        self.lobbyView.collectionView.reloadData()
+        self.downloadData()
     }
     
     //Button Delegates

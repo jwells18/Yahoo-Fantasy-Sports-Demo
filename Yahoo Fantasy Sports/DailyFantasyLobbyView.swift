@@ -22,6 +22,7 @@ class DailyFantasyLobbyView: UIView{
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         return collectionView
     }()
+    var downloadingActivityView = UIActivityIndicatorView()
     
     public override init(frame: CGRect){
         super.init(frame: frame)
@@ -59,6 +60,10 @@ class DailyFantasyLobbyView: UIView{
         self.collectionView.showsVerticalScrollIndicator = false
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(collectionView)
+        
+        //Setup Downloading ActivityView
+        self.downloadingActivityView.activityIndicatorViewStyle = .gray
+        self.collectionView.backgroundView = self.downloadingActivityView
     }
     
     func setupConstraints(){
@@ -68,9 +73,5 @@ class DailyFantasyLobbyView: UIView{
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[collectionView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict))
         //Height & Vertical Alignment
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[headerView][collectionView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict))
-    }
-    
-    func configure(){
-        self.headerView.configure()
     }
 }

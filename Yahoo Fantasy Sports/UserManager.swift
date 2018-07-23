@@ -15,7 +15,6 @@ class UserManager: NSObject{
     var ref: DatabaseReference!
     
     func create(user: User, completionHandler:@escaping (Bool) -> Void) {
-        //Sign up New user
         let ref = Database.database().reference()
         var userData = Dictionary<String, Any>()
         userData["objectId"] = user.objectId
@@ -36,36 +35,12 @@ class UserManager: NSObject{
     func signInAsTestUser(){
         Auth.auth().signIn(withEmail: testUserEmail, password: testUserPassword) { (user, error) in
             if(error == nil){
-                /*
-                //Go to Home - automatically triggered by user state observer in App Delegate
-                self.tableViewFooter.loginActivityIndicator.stopAnimating()
-                
-                //Show Welcome Back Toast
-                let toastDict:[String: Any] = ["message": "welcomeBack".localized()]
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: presentToastNotification), object: nil, userInfo: toastDict)*/
+                //Setup PageViewController - automatically triggered by user state observer in App Delegate
             }
             else{
-                /*
                 //Show Error Message
-                self.tableViewFooter.loginActivityIndicator.stopAnimating()
-                
-                var message = "error".localized()
-                if let errCode = AuthErrorCode(rawValue: error!._code) {
-                    switch errCode {
-                    case .invalidEmail:
-                        message = "invalidEmail".localized()
-                    case .userDisabled:
-                        message = "accountDisabled".localized()
-                    case .wrongPassword:
-                        message = "incorrectPassword".localized()
-                    default:
-                        break
-                    }
-                }
-                
-                //Show Error Toast
-                let toastDict:[String: Any] = ["message": message]
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: presentToastNotification), object: nil, userInfo: toastDict)*/
+                let alert = UIAlertController(title: "sorry".localized(), message: "signInError".localized(), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "ok".localized(), style: .default, handler: nil))
             }
         }
     }

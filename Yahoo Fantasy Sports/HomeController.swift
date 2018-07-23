@@ -16,6 +16,9 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
     private let advertisementCellIdentifier = "advertisementCell"
     private let settingsCellIdentifier = "settingsCell"
     private var homeView = HomeView()
+    private var isInitialDownload = true
+    private var teams = [DBTeam]()
+    private var dailyFantasyLatestContest = DailyFantasyContest()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,9 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
         
         //Setup View
         self.setupView()
+        
+        //Download Data
+        self.downloadData()
     }
     
     func setupNavigationBar(){
@@ -72,8 +78,47 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[homeView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict))
     }
     
-    func refreshData(){
+    func downloadData(){
+        //Start Downloading ActivityView
+        if isInitialDownload{
+            self.homeView.downloadingActivityView.startAnimating()
+        }
         
+        let dailyFantasyManager = DailyFantasyManager()
+        dailyFantasyManager.downloadDailyFantasyLatestContest { (dailyFantasyLatestContest) in
+            
+            self.dailyFantasyLatestContest = dailyFantasyLatestContest
+            
+            //Download User Teams
+            let teamManager = TeamManager()
+            teamManager.loadTeams(completionHandler: { (teams) in
+                //Stop Downloading ActivityView
+                if(self.homeView.downloadingActivityView.isAnimating){
+                    self.homeView.downloadingActivityView.stopAnimating()
+                }
+                
+                //Change Initial Download Bool
+                self.isInitialDownload = false
+                
+                self.teams = Array(teams!)
+                
+                /*
+                //TODO: Show Empty View (if necessary)
+                if self.dailyFantasyContests.count > 0{
+                    self.homeView.collectionView.backgroundView = nil
+                }
+                else{
+                    let emptyView = YHEmptyView(image: UIImage(), title: "Empty", tabBarHeight: self.tabBarController?.tabBar.frame.height)
+                    self.homeView.collectionView.backgroundView = emptyView
+                }*/
+                
+                self.homeView.collectionView.reloadData()
+            })
+        }
+    }
+    
+    func refreshData(){
+        self.downloadData()
     }
     
     //CollectionView DataSource
@@ -82,7 +127,12 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        switch isInitialDownload{
+        case true:
+            return 0
+        case false:
+           return teams.count+3
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -105,12 +155,12 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         switch indexPath.row{
         case 0:
-            return CGSize(width: collectionView.frame.width-16, height: 125)
-        case 1:
             return CGSize(width: collectionView.frame.width-16, height: 135)
-        case 2:
+        case _ where indexPath.row <= teams.count:
+            return CGSize(width: collectionView.frame.width-16, height: 125)
+        case _ where indexPath.row == teams.count+1:
             return CGSize(width: collectionView.frame.width-16, height: 70)
-        case 3:
+        case _ where indexPath.row == teams.count+2:
             return CGSize(width: collectionView.frame.width-16, height: 50)
         default:
             return .zero
@@ -120,27 +170,25 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.row{
         case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: footballLeagueCellIdentifier, for: indexPath) as! HomeFantasyLeagueCell
-            cell.configure(league: nil)
-            return cell
-        case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: dailyFantasyCellIdentifier, for: indexPath) as! HomeDailyFantasyCell
             cell.homeDailyFantasyCellDelegate = self
-            cell.configure(league: nil)
+            cell.configure(contest: dailyFantasyLatestContest)
             return cell
-        case 2:
+        case _ where indexPath.row <= teams.count:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: footballLeagueCellIdentifier, for: indexPath) as! HomeFantasyLeagueCell
+            cell.configure(team: teams[indexPath.row-1])
+            return cell
+        case _ where indexPath.row == teams.count+1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: advertisementCellIdentifier, for: indexPath) as! YHAdvertisementCollectionCell
             cell.configure()
             return cell
-        case 3:
+        case _ where indexPath.row == teams.count+2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: settingsCellIdentifier, for: indexPath) as! HomeSettingsCell
             return cell
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: footballLeagueCellIdentifier, for: indexPath) as! HomeFantasyLeagueCell
-            cell.configure(league: nil)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: dailyFantasyCellIdentifier, for: indexPath) as! HomeDailyFantasyCell
             return cell
         }
-        
     }
     
     //CollectionViewCell Delegate
@@ -150,13 +198,13 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
         switch indexPath.row{
         case 0:
             appDelegate.pageViewControllers.remove(at: 1)
-            let leagueVC = appDelegate.setupLeagueController()
-            appDelegate.pageViewControllers.insert(leagueVC, at: 1)
-            pageViewController.setViewControllers([appDelegate.pageViewControllers[1]], direction: .forward, animated: true, completion: nil)
-        case 1:
-            appDelegate.pageViewControllers.remove(at: 1)
             let dailyFantasyVC = appDelegate.setupDailyFantasyController()
             appDelegate.pageViewControllers.insert(dailyFantasyVC, at: 1)
+            pageViewController.setViewControllers([appDelegate.pageViewControllers[1]], direction: .forward, animated: true, completion: nil)
+        case _ where indexPath.row <= teams.count:
+            appDelegate.pageViewControllers.remove(at: 1)
+            let leagueVC = appDelegate.setupLeagueController(team: teams[indexPath.row-1])
+            appDelegate.pageViewControllers.insert(leagueVC, at: 1)
             pageViewController.setViewControllers([appDelegate.pageViewControllers[1]], direction: .forward, animated: true, completion: nil)
         default:
             //Show Feature Unavailable

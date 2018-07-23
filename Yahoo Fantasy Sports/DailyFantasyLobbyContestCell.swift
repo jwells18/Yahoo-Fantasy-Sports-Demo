@@ -20,6 +20,7 @@ class DailyFantasyLobbyContestCell: UICollectionViewCell, UITableViewDataSource,
     var tableViewHeader = DailyLobbyFantasyContestTableHeader()
     var tableViewFooter = DailyLobbyFantasyContestTableFooter()
     private let cellIdentifier = "cell"
+    var contests = [DailyFantasyContest]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,9 +79,11 @@ class DailyFantasyLobbyContestCell: UICollectionViewCell, UITableViewDataSource,
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tableView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict))
     }
     
-    func configure(){
-        self.tableViewHeader.configure(image: UIImage(named: "footballLeague"), title: "NFL Contests")
-        //self.tableView.reloadData()
+    func configure(contests: [DailyFantasyContest]?){
+        let contest = contests?.first
+        self.tableViewHeader.configure(image: UIImage(named: contest?.sport.rawValue ?? ""), title: String(format: "%@ %@", contest?.sportsLeague.rawValue ?? "", "contests".localized()))
+        self.contests = contests!
+        self.tableView.reloadData()
     }
     
     //TableView DataSource
@@ -89,7 +92,7 @@ class DailyFantasyLobbyContestCell: UICollectionViewCell, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return contests.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -98,7 +101,7 @@ class DailyFantasyLobbyContestCell: UICollectionViewCell, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! DailyFantasyLobbyContestTableCell
-        cell.configure()
+        cell.configure(contest: contests[indexPath.row])
         return cell
     }
     

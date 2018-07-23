@@ -21,6 +21,7 @@ class LeaguePlayersTopAvailableCell: UICollectionViewCell, UITableViewDataSource
     var tableView = UITableView()
     var headerView = LeaguePlayersTableHeader()
     var segmentedControl = HMSegmentedControl()
+    var players = [Player]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -87,8 +88,9 @@ class LeaguePlayersTopAvailableCell: UICollectionViewCell, UITableViewDataSource
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[headerView(40)][segmentedControl(40)][tableView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict))
     }
     
-    func configure(){
-        //self.tableView.reloadData()
+    func configure(players: [Player]){
+        self.players = players//.prefix(3)
+        self.tableView.reloadData()
     }
     
     //TableView DataSource
@@ -97,7 +99,7 @@ class LeaguePlayersTopAvailableCell: UICollectionViewCell, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return players.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -116,7 +118,7 @@ class LeaguePlayersTopAvailableCell: UICollectionViewCell, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! LeaguePlayersPlayerTableCell
-        cell.configure()
+        cell.configure(player: players[indexPath.row], rank: indexPath.row)
         return cell
     }
     

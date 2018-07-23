@@ -14,6 +14,7 @@ target 'Yahoo Fantasy Sports' do
   pod 'SDWebImage'
   pod 'NJKWebViewProgress'
   pod 'RealmSwift', '~> 3.0.2'
+  pod 'DateToolsSwift'
 
   target 'Yahoo Fantasy SportsTests' do
     inherit! :search_paths

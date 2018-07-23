@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+class LeagueManager: NSObject{
+    //TODO: Implement League Manager
+}

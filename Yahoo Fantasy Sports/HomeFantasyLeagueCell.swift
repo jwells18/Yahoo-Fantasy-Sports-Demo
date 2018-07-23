@@ -34,7 +34,7 @@ class HomeFantasyLeagueCell: UICollectionViewCell{
         self.backgroundColor = .white
         self.clipsToBounds = false
         /*
-        //Add Shadow
+        //TODO: Add Shadow
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.lightGray.cgColor
         self.layer.shadowOpacity = 0.8
@@ -100,6 +100,7 @@ class HomeFantasyLeagueCell: UICollectionViewCell{
     func setupMainImageView(){
         self.mainImageView.backgroundColor = YHColor.faintGray
         self.mainImageView.clipsToBounds = true
+        self.mainImageView.layer.cornerRadius = 50/cornerRadiusDivisor
         self.mainImageView.translatesAutoresizingMaskIntoConstraints = false
         self.mainContainerView.addSubview(self.mainImageView)
     }
@@ -152,22 +153,21 @@ class HomeFantasyLeagueCell: UICollectionViewCell{
         super.layoutSubviews()
         //Set Frames
         gradient.frame = self.headerContainerView.bounds
-        self.mainImageView.layer.cornerRadius = 50/cornerRadiusDivisor //self.mainImageView.frame.width/cornerRadiusDivisor
     }
     
-    func configure(league: League?){
+    func configure(team: DBTeam){
         //Setup Header ContainerView
         gradient.colors = [YHColor.red.cgColor, YHColor.darkRed.cgColor]
-        headerImageView.image = UIImage(named: "footballLeague")
-        headerTitleLabel.text = "LA Accountants League"
+        headerImageView.image = UIImage(named: team.sport)
+        headerTitleLabel.text = String(format: "%@ %@", team.leagueName, "league".localized())
         //Set MainContainerView
-        if league?.image != nil{
-            mainImageView.sd_setImage(with: URL(string: (league?.image)!), placeholderImage: UIImage(named: "footballLeaguePlaceholder"))
+        if team.image != nil{
+            mainImageView.sd_setImage(with: URL(string: (team.image)!), placeholderImage: UIImage(named: "footballLeaguePlaceholder"))
         }
         else{
             mainImageView.image = UIImage(named: "footballLeaguePlaceholder")
         }
-        mainTitleLabel.text = "Morgan Stanley Team"//league?.name
-        mainSubTitleLabel.text = String(format: "%@ %@", "0", "pts".localized())//league?.name
+        mainTitleLabel.text = String(format: "%@ %@", team.name, "team".localized())
+        mainSubTitleLabel.text = String(format: "%@ %@", String(Int(team.points)), "pts".localized())
     }
 }

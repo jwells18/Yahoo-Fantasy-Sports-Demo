@@ -16,6 +16,8 @@ class Team: NSObject{
     var image: String!
     var leagueId: String!
     var leagueName: String!
+    var sport: Sport!
+    var sportsLeague: SportsLeague!
     var points: NSNumber!
     var memberIds: [String]!
 }

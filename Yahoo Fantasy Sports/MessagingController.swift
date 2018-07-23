@@ -14,14 +14,20 @@ class MessagingController: UIViewController, UITableViewDataSource, UITableViewD
     private var messagingView = MessagingView()
     private var searchBar = UISearchBar()
     private var profileButton: UIBarButtonItem!
+    private let chatManager = ChatManager()
+    private var chats = [DBChat]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Setup NavigationBar
         self.setupNavigationBar()
         
         //Setup View
         self.setupView()
+        
+        //Dowload Data
+        self.downloadData()
     }
     
     func setupNavigationBar(){
@@ -70,13 +76,20 @@ class MessagingController: UIViewController, UITableViewDataSource, UITableViewD
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[messagingView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict))
     }
     
+    func downloadData(){
+        self.chatManager.loadChats { (chats) in
+            self.chats = Array(chats!)
+            self.messagingView.tableView.reloadData()
+        }
+    }
+    
     //TableView DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return chats.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -85,7 +98,7 @@ class MessagingController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! MessagingViewCell
-        cell.configure()
+        cell.configure(chat: chats[indexPath.row])
         return cell
     }
     
@@ -108,11 +121,20 @@ class MessagingController: UIViewController, UITableViewDataSource, UITableViewD
         self.searchBar.resignFirstResponder()
     }
     
-    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.navigationItem.rightBarButtonItem = profileButton
         self.searchBar.showsCancelButton = false
-        return true
+        self.searchBar.resignFirstResponder()
     }
+    
+    //TODO: Fully implement search
+    /*
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        chatManager.searchMessages(searchText: searchText) { (chats) in
+            self.chats = Array(chats!)
+            self.messagingView.tableView.reloadData()
+        }
+    }*/
     
     //Button Delegates
     func backButtonPressed(sender: UIButton){

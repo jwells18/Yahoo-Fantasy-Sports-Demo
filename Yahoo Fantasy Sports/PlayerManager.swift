@@ -81,6 +81,7 @@ class PlayerManager: NSObject{
         let nextGameDate = rawData["nextGameDate"] as! Double
         player.nextGameDate = nextGameDate.dateValue()
         player.nextGameTeam = rawData["nextGameTeam"] as? String
+        player.nextGameProjPts = rawData["nextGameProjPts"] as? NSNumber
         player.adds = rawData["adds"] as? NSNumber
         player.ownedPercentage = rawData["ownedPercentage"] as? NSNumber
         player.drops = rawData["drops"] as? NSNumber

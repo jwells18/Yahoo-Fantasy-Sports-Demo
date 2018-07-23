@@ -76,6 +76,7 @@ class HomeDailyFantasyCell: UICollectionViewCell{
         //Set Gradient Background
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        gradient.colors = [YHColor.mint.cgColor, YHColor.darkMint.cgColor]
         self.headerContainerView.layer.insertSublayer(gradient, at: 0)
     }
     
@@ -176,11 +177,11 @@ class HomeDailyFantasyCell: UICollectionViewCell{
         gradient.frame = self.headerContainerView.bounds
     }
     
-    func configure(league: League?){
-        //Setup Header ContainerView
-        gradient.colors = [YHColor.mint.cgColor, YHColor.darkMint.cgColor]
-        mainTitleLabel.text = "PGA $20K Guaranteed [$4K to 1st]"//league?.name
-        mainSubTitleLabel.text = "89/2.3K Entries | $10 | $20,00 Prizes | 1:3 odds"//league?.name
+    func configure(contest: DailyFantasyContest?){
+        if(contest != nil){
+            mainTitleLabel.text = contest?.name ?? ""
+            mainSubTitleLabel.text = String(format: "%@/%@ %@ | %@ | %@ %@ | %@", contest?.entryCount.stringValue ?? "--", contest?.entryLimit.stringValue ?? "--", "entries".localized(),contest?.entryFee.shortNumberString(style: .currency) ?? "--", contest?.totalPrize.shortNumberString(style: .currency) ?? "--", "prizes".localized(), contest?.startDate.dayAndTime() ?? "--")
+        }
     }
     
     //Button Delegates

@@ -57,11 +57,13 @@ func uploadTestTeam(){
     teamData["createdAt"] = ServerValue.timestamp()
     teamData["updatedAt"] = ServerValue.timestamp()
     teamData["name"] = "Morgan Stanley"
-    teamData["image"] = ""
+    teamData["image"] = "https://firebasestorage.googleapis.com/v0/b/ticketmaster-23010.appspot.com/o/YHTeam%2F-LHtsQxqU7JMluaSzTbA%2FmorganStanleyLogo.jpg?alt=media&token=2c4246a7-ddf6-406b-b388-a16e49cac3bc"
     //teamData["leagueId"] = ""
     teamData["leagueName"] = "LA Accountants"
     teamData["points"] = 0
     //teamData["memberIds"] = ""
+    teamData["sport"] = "football"
+    teamData["sportsLeague"] = "nfl"
     ref.child(teamDatabase).child("zcaa1rM8t1R7BRc1KyPOn7y7Wud2").child(teamData["objectId"] as! String).setValue(teamData) { (error:Error?, DatabaseReference) in
         if((error) != nil){
             print("Error uploading team")
@@ -76,7 +78,7 @@ func uploadTestChat(){
     chatData["updatedAt"] = ServerValue.timestamp()
     chatData["name"] = "Morgan Stanley"
     chatData["image"] = ""
-    chatData["lastMesage"] = "Good luck everyone!"
+    chatData["lastMessage"] = "Good luck everyone!"
     chatData["leagueId"] = ""
     ref.child(chatDatabase).child("zcaa1rM8t1R7BRc1KyPOn7y7Wud2").child(chatData["objectId"] as! String).setValue(chatData) { (error:Error?, DatabaseReference) in
         if((error) != nil){
@@ -199,10 +201,11 @@ func uploadTestPlayers(){
         playerData["updatedAt"] = ServerValue.timestamp()
         playerData["firstName"] = playerFirstNames[i]
         playerData["lastName"] = playerLastNames[i]
+        playerData["image"] = playerImages[i]
         playerData["sport"] = playerSports[i]
         playerData["sportsLeague"] = playerSportsLeagues[i]
         playerData["position"] = playerPositions[i]
-        playerData["nextGameDate"] = playerNextGameDates[i]
+        playerData["nextGameDate"] = dateManager.createDate(string: playerNextGameDates[i]).timestamp()
         playerData["nextGameTeam"] = playerNextGameTeams[i]
         playerData["nextGameProjPts"] = playerNextGameProjPts[i]
         playerData["adds"] = playerAdds[i]
@@ -225,14 +228,15 @@ func uploadTestPlayers(){
 
 //Test Player Raw Data
 let playerFirstNames = ["Aaron", "Deshaun", "Alvin", "Tavon", "Randall", "Jamaal"]
-let playerLastNames = ["Rodger", "Watson", "Kamara", "Austin", "Cobb", "Watson"]
+let playerLastNames = ["Rodgers", "Watson", "Kamara", "Austin", "Cobb", "Williams"]
+let playerImages = ["https://firebasestorage.googleapis.com/v0/b/ticketmaster-23010.appspot.com/o/YHPlayer%2Fnfl%2F-LHtsQxwiO119T4SaTQx%2FaaronRodgers.png?alt=media&token=f7904ff0-68b2-4287-b9d6-e1e7794d6808", "https://firebasestorage.googleapis.com/v0/b/ticketmaster-23010.appspot.com/o/YHPlayer%2Fnfl%2F-LHtsQxwiO119T4SaTQy%2FdeshaunWatson.png?alt=media&token=e081c51d-78b7-49fa-a51f-5dbc85e3ed20", "https://firebasestorage.googleapis.com/v0/b/ticketmaster-23010.appspot.com/o/YHPlayer%2Fnfl%2F-LHtsQxxKXCDPHwI_ZUe%2FalvinKamara.png?alt=media&token=480f2fa1-88b5-4b57-9c4d-d38a45b19577", "https://firebasestorage.googleapis.com/v0/b/ticketmaster-23010.appspot.com/o/YHPlayer%2Fnfl%2F-LHtsQxxKXCDPHwI_ZUf%2FtavonAustin.png?alt=media&token=ef496818-97f7-49b6-8e09-c1df667b9e1a", "https://firebasestorage.googleapis.com/v0/b/ticketmaster-23010.appspot.com/o/YHPlayer%2Fnfl%2F-LHtsQxxKXCDPHwI_ZUg%2FrandallCobb.png?alt=media&token=5b32295e-6177-473c-bdca-e18136f274f0", "https://firebasestorage.googleapis.com/v0/b/ticketmaster-23010.appspot.com/o/YHPlayer%2Fnfl%2F-LHtsQxxKXCDPHwI_ZUh%2FjamaalWilliams.png?alt=media&token=cf795d65-cab2-408d-ac42-1802b04503f0"]
 let playerSports = ["football", "football", "football", "football", "football", "football"]
 let playerSportsLeagues = ["NFL", "NFL", "NFL", "NFL", "NFL", "NFL"]
 let playerPositions = [ "QB", "QB", "RB", "WR", "WR", "RB"]
 let playerNextGameDates = ["2018/09/09 20:20", "2018/09/09 13:00", "2018/09/09 13:00", "2018/09/09 16:25", "2018/09/09 20:20", "2018/09/09 20:20"]
 let playerNextGameTeams = ["CHI", "NE", "TB", "CAR", "CHI", "CHI"]
 let playerNextGameProjPts = [22.87, 22.34, 21.32, 4.23, 9.16, 9.42]
-let playerAdds = [1, 2, 0, 0, 0, 40]
+let playerAdds = [1, 2, 0, 67, 53, 40]
 let playerOwnedPercentage = [0, 0, 0, 0, 0, 0]
 let playerDrops = [0, 0, 0, 4, 8, 8]
 let playerTrades = [0, 0, 0, 0, 0, 0]

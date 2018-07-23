@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SDWebImage
+import DateToolsSwift
 
 class MessagingViewCell: UITableViewCell{
     
@@ -73,7 +75,7 @@ class MessagingViewCell: UITableViewCell{
     func setupDateLabel(){
         self.dateLabel.textColor = .gray
         self.dateLabel.textAlignment = .right
-        self.dateLabel.font = UIFont.systemFont(ofSize: 10)
+        self.dateLabel.font = UIFont.systemFont(ofSize: 12)
         self.dateLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.dateLabel)
     }
@@ -100,15 +102,20 @@ class MessagingViewCell: UITableViewCell{
         //Height & Vertical Alignment
         self.addConstraints([NSLayoutConstraint.init(item: mainImageButton, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)])
         self.addConstraints([NSLayoutConstraint.init(item: mainImageButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)])
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[spacerViewTop(==spacerViewBottom)][titleLabel][subTitleLabel][spacerViewBottom(==spacerViewTop)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[spacerViewTop(==spacerViewBottom)][titleLabel][subTitleLabel(>=18)][spacerViewBottom(==spacerViewTop)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDict))
         self.addConstraints([NSLayoutConstraint.init(item: dateLabel, attribute: .top, relatedBy: .equal, toItem: self.mainImageButton, attribute: .top, multiplier: 1, constant: 0)])
     }
     
-    func configure(){
-        self.mainImageButton.setImage(UIImage(named: "messaging"), for: .normal)
-        self.titleLabel.text = "LA Accountant League"
-        self.subTitleLabel.text = "You: Good luck everyone"
-        self.dateLabel.text = "Yesterday"
+    func configure(chat: DBChat?){
+        if (chat?.image != nil){
+            mainImageButton.sd_setImage(with: URL(string: (chat?.image!)!), for: .normal, placeholderImage: UIImage(named: "messaging"), options: SDWebImageOptions(rawValue: 0), completed: nil)
+        }
+        else{
+            self.mainImageButton.setImage(UIImage(named: "messaging"), for: .normal)
+        }
+        self.titleLabel.text = chat?.name
+        self.subTitleLabel.text = chat?.lastMessage
+        self.dateLabel.text = chat?.updatedAt.dateValue().shortTimeAgoSinceNow
     }
     
     override func layoutSubviews() {

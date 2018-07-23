@@ -17,6 +17,8 @@ class DBTeam: Object{
     dynamic var image: String!
     dynamic var leagueId: String!
     dynamic var leagueName: String!
+    dynamic var sport: String!
+    dynamic var sportsLeague: String!
     dynamic var points = Double()
     dynamic var memberIds: String!
     

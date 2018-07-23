@@ -107,8 +107,8 @@ class DailyFantasyResearchHeader: UIView{
         self.addConstraint(NSLayoutConstraint.init(item: spacerView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
     }
     
-    func configure(league: String?, date: Date?){
+    func configure(league: String?, date: Date){
         self.leagueButton.setTitle(league, for: .normal)
-        self.dateButton.setTitle("Jul 16, 2018", for: .normal)
+        self.dateButton.setTitle(date.monthDayAndYear(), for: .normal)
     }
 }

@@ -27,22 +27,18 @@ extension Double{
 }
 
 extension Date {
-    func monthAndDay() -> String? {
+    func dayAndTime() -> String? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM d"
-        return dateFormatter.string(from: self).capitalized
+        dateFormatter.dateFormat = "E h:mma"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
+        return dateFormatter.string(from: self)
     }
     
-    func dayOfWeek() -> String? {
+    func monthDayAndYear() -> String? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "E"
-        return dateFormatter.string(from: self).capitalized
-    }
-    
-    func timeLong() -> String? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "h:mm a"
-        return dateFormatter.string(from: self).capitalized
+        dateFormatter.dateFormat = "MMM dd, yyyy"
+        return dateFormatter.string(from: self)
     }
     
     func startOfDay() -> Date {

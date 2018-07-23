@@ -30,13 +30,6 @@ class YHAdvertisementTableCell: UITableViewCell{
         self.backgroundColor = .white
         self.clipsToBounds = false
         self.selectionStyle = .none
-        /*
-         //Add Shadow
-         self.layer.masksToBounds = false
-         self.layer.shadowColor = UIColor.lightGray.cgColor
-         self.layer.shadowOpacity = 0.8
-         self.layer.shadowOffset = CGSize(width: 0, height: 2)
-         self.layer.shadowRadius = (self.frame.width+4)/2*/
         
         //Setup Main ImageView
         self.setupMainImageView()

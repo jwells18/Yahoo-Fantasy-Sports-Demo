@@ -10,6 +10,8 @@ import UIKit
 
 class LeagueMyTeamController: UIViewController, UITableViewDataSource, UITableViewDelegate, LeagueMyTeamSummaryCellDelegate, YHSettingsTableCellDelegate{
     
+    var currentDBUser: DBUser!
+    var team: DBTeam!
     var navigationTitleView = YHDetailTitleView()
     var myTeamView = LeagueMyTeamView()
     private let summaryCellIdentifier = "summaryCell"
@@ -17,6 +19,11 @@ class LeagueMyTeamController: UIViewController, UITableViewDataSource, UITableVi
     private let settingsCellIdentifier = "settingsCell"
     private let advertisementCellIdentifier = "advertisementCell"
     private let playerCellIdentifier = "playerCell"
+    
+    convenience init(team: DBTeam) {
+        self.init()
+        self.team = team
+    }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -30,6 +37,10 @@ class LeagueMyTeamController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Set Current User
+        let userManager = UserManager()
+        self.currentDBUser = userManager.getCurrentDBUser()
+        
         //Setup NavigationBar
         self.setupNavigationBar()
         
@@ -40,7 +51,7 @@ class LeagueMyTeamController: UIViewController, UITableViewDataSource, UITableVi
     func setupNavigationBar(){
         //Setup Navigation Items
         self.navigationTitleView.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
-        self.navigationTitleView.configure(title: "Morgan Stanley Team", subTitle: "LA Accountants League")
+        self.navigationTitleView.configure(title: String(format: "%@ %@", team.name, "team".localized()), subTitle: String(format: "%@ %@", team.leagueName, "league".localized()))
         self.navigationItem.titleView = self.navigationTitleView
         
         let homeBtn = YHBarButton(image: UIImage(named: "home"))
@@ -98,11 +109,11 @@ class LeagueMyTeamController: UIViewController, UITableViewDataSource, UITableVi
     
     //Data
     func downloadData(){
-        
+        //TODO: download data
     }
     
     func refreshData(){
-        
+        self.myTeamView.refreshControl.endRefreshing()
     }
     
     //TableView DataSource
@@ -156,7 +167,7 @@ class LeagueMyTeamController: UIViewController, UITableViewDataSource, UITableVi
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: summaryCellIdentifier, for: indexPath) as! LeagueMyTeamSummaryCell
                 cell.leagueMyTeamSummaryCellDelegate = self
-                cell.configure(league: nil)
+                cell.configure(team: self.team, user: self.currentDBUser)
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: draftTypeCellIdentifier, for: indexPath) as! LeagueMyTeamDraftTypeCell
@@ -173,7 +184,6 @@ class LeagueMyTeamController: UIViewController, UITableViewDataSource, UITableVi
                 return cell
             default:
                 let cell = tableView.dequeueReusableCell(withIdentifier: summaryCellIdentifier, for: indexPath) as! LeagueMyTeamSummaryCell
-                cell.configure(league: nil)
                 return cell
             }
         default:

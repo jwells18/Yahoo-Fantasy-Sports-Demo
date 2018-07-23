@@ -47,7 +47,7 @@ class LeagueMenuDailyFantasyCell: UICollectionViewCell{
     }
     
     func setupMainImageView(){
-        self.mainImageView.image = UIImage(named: "footballLeaguePlaceholder")
+        self.mainImageView.image = UIImage(named: "yahooDailyFantasyLogo1")
         self.mainImageView.backgroundColor = YHColor.faintGray
         self.mainImageView.contentMode = .scaleAspectFit
         self.mainImageView.clipsToBounds = true

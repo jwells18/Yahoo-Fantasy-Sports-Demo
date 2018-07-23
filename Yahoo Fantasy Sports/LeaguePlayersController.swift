@@ -11,6 +11,7 @@ import HMSegmentedControl
 
 class LeaguePlayersController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, YHNavigationCollectionHeaderDelegate, LeaguePlayersSearchCellDelegate, LeaguePlayersTopAvailableCellDelegate, LeaguePlayersTransactionTrendsCellDelegate{
     
+    var team: DBTeam!
     var navigationTitleView = YHDetailTitleView()
     var playersView = LeaguePlayersView()
     private let headerCellIdentifier = "headerCell"
@@ -18,6 +19,14 @@ class LeaguePlayersController: UIViewController, UICollectionViewDataSource, UIC
     private let advertisementCellIdentifier = "advertisementCell"
     private let topAvailableCellIdentifier = "topAvailableCell"
     private let transactionTrendsCellIdentifier = "transactionTrendsCell"
+    var isInitialDownload = true
+    var topAvailablePlayers = [Player]()
+    var transactionTrendsPlayers = [Player]()
+    
+    convenience init(team: DBTeam) {
+        self.init()
+        self.team = team
+    }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -36,12 +45,15 @@ class LeaguePlayersController: UIViewController, UICollectionViewDataSource, UIC
         
         //Setup View
         self.setupView()
+        
+        //Download Data
+        self.downloadData()
     }
     
     func setupNavigationBar(){
         //Setup Navigation Items
         self.navigationTitleView.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
-        self.navigationTitleView.configure(title: "Morgan Stanley Team", subTitle: "LA Accountants League")
+        self.navigationTitleView.configure(title: String(format: "%@ %@", team.name, "team".localized()), subTitle: String(format: "%@ %@", team.leagueName, "league".localized()))
         self.navigationItem.titleView = self.navigationTitleView
         
         let homeBtn = YHBarButton(image: UIImage(named: "home"))
@@ -94,11 +106,44 @@ class LeaguePlayersController: UIViewController, UICollectionViewDataSource, UIC
     
     //Data
     func downloadData(){
+        //Start Downloading ActivityView
+        if isInitialDownload{
+            self.playersView.downloadingActivityView.startAnimating()
+        }
         
+        //Change Initial Download Bool
+        isInitialDownload = false
+        
+        let playerManager = PlayerManager()
+        playerManager.downloadTopAvailablePlayers { (players) in
+
+            self.topAvailablePlayers = players
+            
+            playerManager.downloadTransactionTrendsPlayers(completionHandler: { (players) in
+                //Stop Downloading ActivityView
+                if(self.playersView.downloadingActivityView.isAnimating){
+                    self.playersView.downloadingActivityView.stopAnimating()
+                }
+                
+                self.transactionTrendsPlayers = players
+                /*
+                //TODO: Show Empty View (if necessary)
+                if self.topAvailablePlayers.count > 0{
+                    self.playersView.collectionView.backgroundView = nil
+                }
+                else{
+                    let emptyView = YHEmptyView(image: UIImage(), title: "Empty", tabBarHeight: self.tabBarController?.tabBar.frame.height)
+                    self.playersView.collectionView.backgroundView = emptyView
+                }*/
+                
+                self.playersView.refreshControl.endRefreshing()
+                self.playersView.collectionView.reloadData()
+            })
+        }
     }
     
     func refreshData(){
-        
+        downloadData()
     }
     
     //CollectionView DataSource
@@ -155,12 +200,12 @@ class LeaguePlayersController: UIViewController, UICollectionViewDataSource, UIC
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: topAvailableCellIdentifier, for: indexPath) as! LeaguePlayersTopAvailableCell
             cell.leaguePlayersTopAvailableCellDelegate = self
-            cell.configure()
+            cell.configure(players: self.topAvailablePlayers)
             return cell
         case 3:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: transactionTrendsCellIdentifier, for: indexPath) as! LeaguePlayersTransactionTrendsCell
             cell.leaguePlayersTransactionTrendsCellDelegate = self
-            cell.configure()
+            cell.configure(players: self.transactionTrendsPlayers)
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: advertisementCellIdentifier, for: indexPath) as! YHAdvertisementCollectionCell
@@ -186,7 +231,7 @@ class LeaguePlayersController: UIViewController, UICollectionViewDataSource, UIC
     }
     
     func didChangeleaguePlayersTopAvailableSegmentedControl(segmentedControl: HMSegmentedControl){
-        //Change Data
+        //TODO: Update Data
     }
     
     func didPressLeaguePlayersTransactionTrendsCell(indexPath: IndexPath) {

@@ -18,6 +18,13 @@
 "dailyFantasySubTitle" = "Win cash in one-day contests.\nPlay now!";
 "editTeamOrder" = "Edit Team Order";
 "sponsored" = "Sponsored";
+"team" = "Team";
+"league" = "League";
+"entries" = "Entries";
+"prizes" = "Prizes";
+"entry" = "Entry";
+"free" = "Free";
+"signInError" = "Signing in as the test user was unsuccessful. Please restart the app.";
 
 //Menu Controller
 "accountInfo" = "Account info";
@@ -65,12 +72,12 @@
 "createContests" = "Create Contests";
 "dailyFantasyLobbyDisclaimer" = "Apple Inc, NFL, NBA, MLB, NHL, UCL, EPL, La Liga, and MLS are not sponsors of, nor are any of them affiliated with, Yahoo Sports Daily Fantasy in any way.";
 "viewAll" = "View All";
+"rounds" = "Rounds";
 
 //League Controller
 "myTeam" = "My Team";
 "standings" = "Standings";
 "players" = "Players";
-"league" = "Leagues";
 "myWatchlist" = "My Watchlist";
 "comparePlayers" = "Compare Players";
 "nflNews" = "NFL News";
@@ -98,6 +105,7 @@
 "searchByPlayerName" = "Search by player name";
 "topAvailablePlayers" = "Top Available Players";
 "transactionTrends" = "Transaction Trends";
+"enterLeagueForFree" = "Enter league for free";
 
 //League Menu Controller
 "playNow" = "Play Now";

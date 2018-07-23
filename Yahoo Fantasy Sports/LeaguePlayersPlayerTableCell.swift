@@ -56,7 +56,7 @@ class LeaguePlayersPlayerTableCell: UITableViewCell{
     
     func setupMainImageView(){
         self.mainImageView.backgroundColor = .white
-        self.mainImageView.contentMode = .scaleAspectFit
+        self.mainImageView.contentMode = .scaleAspectFill
         self.mainImageView.clipsToBounds = true
         self.mainImageView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.mainImageView)
@@ -120,14 +120,31 @@ class LeaguePlayersPlayerTableCell: UITableViewCell{
         self.addConstraints([NSLayoutConstraint.init(item: label4, attribute: .height, relatedBy: .equal, toItem: self.label1, attribute: .height, multiplier: 1, constant: 0)])
     }
     
-    func configure(){
-        self.mainImageView.image = UIImage(named: "aaronRodgers")
-        self.titleLabel.text = "A. Rodgers"
-        self.subTitleLabel.text = "Sun 8:20PM v CHI"
-        self.label1.text = "1"
-        self.label2.text = "22.87"
-        self.label3.text = "1"
-        self.label4.text = "0%"
+    func configure(player: Player?, rank: Int?){
+        if player?.image != nil{
+            mainImageView.sd_setImage(with: URL(string: (player?.image)!), placeholderImage: UIImage())
+        }
+        else{
+            mainImageView.image = UIImage()
+        }
+        self.titleLabel.text = String(format: "%@ %@", player?.firstName ?? "", player?.lastName ?? "")
+        self.subTitleLabel.text = String(format: "%@ v %@", player?.nextGameDate.dayAndTime() ?? "N/A",player?.nextGameTeam ?? "N/A")
+        switch rank == nil{
+        case true:
+            self.label1.text = player?.adds.stringValue ?? "0"
+            self.label2.text = player?.drops.stringValue ?? "0"
+            self.label3.text = player?.trades.stringValue ?? "0"
+            switch (player?.ownershipType)!{
+            case .freeAgent:
+                self.label4.text = "FA"
+            }  
+        case false:
+            self.label1.text = String(rank!+1)
+            self.label2.text = player?.nextGameProjPts.stringValue ?? "0"
+            self.label3.text = player?.adds.stringValue ?? "0"
+            self.label4.text = String(format: "%@%%",player?.ownedPercentage.stringValue ?? "0")
+        }
+        
     }
 }
 

@@ -10,12 +10,18 @@ import UIKit
 
 class LeagueLeagueController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, YHNavigationCollectionHeaderDelegate, YHSettingsCollectionCellDelegate, LeagueLeagueInviteCellDelegate{
     
+    var team: DBTeam!
     var navigationTitleView = YHDetailTitleView()
     var leagueView = LeagueLeagueView()
     private let headerCellIdentifier = "headerCell"
     private let advertisementCellIdentifier = "advertisementCell"
     private let inviteCellIdentifier = "inviteCell"
     private let settingsCellIdentifier = "settingsCell"
+    
+    convenience init(team: DBTeam) {
+        self.init()
+        self.team = team
+    }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -39,7 +45,7 @@ class LeagueLeagueController: UIViewController, UICollectionViewDataSource, UICo
     func setupNavigationBar(){
         //Setup Navigation Items
         self.navigationTitleView.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
-        self.navigationTitleView.configure(title: "Morgan Stanley Team", subTitle: "LA Accountants League")
+        self.navigationTitleView.configure(title: String(format: "%@ %@", team.name, "team".localized()), subTitle: String(format: "%@ %@", team.leagueName, "league".localized()))
         self.navigationItem.titleView = self.navigationTitleView
         
         let homeBtn = YHBarButton(image: UIImage(named: "home"))
@@ -91,11 +97,11 @@ class LeagueLeagueController: UIViewController, UICollectionViewDataSource, UICo
     
     //Data
     func downloadData(){
-        
+        //TODO: download data
     }
     
     func refreshData(){
-        
+        self.leagueView.refreshControl.endRefreshing()
     }
     
     //CollectionView DataSource

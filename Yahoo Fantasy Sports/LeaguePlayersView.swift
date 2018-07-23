@@ -22,6 +22,7 @@ class LeaguePlayersView: UIView{
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         return collectionView
     }()
+    var downloadingActivityView = UIActivityIndicatorView()
     
     public override init(frame: CGRect){
         super.init(frame: frame)
@@ -56,6 +57,10 @@ class LeaguePlayersView: UIView{
         self.refreshControl.tintColor = .lightGray
         self.refreshControl.layer.zPosition = -1
         self.collectionView.addSubview(refreshControl)
+        
+        //Setup Downloading ActivityView
+        self.downloadingActivityView.activityIndicatorViewStyle = .gray
+        self.collectionView.backgroundView = self.downloadingActivityView
     }
     
     func setupConstraints(){

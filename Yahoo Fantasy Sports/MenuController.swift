@@ -11,7 +11,6 @@ import UIKit
 class MenuController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     var currentDBUser: DBUser!
-    private var userManager = UserManager()
     private let topTableCellIdentifier = "topTableCell"
     private let bottomTableCellIdentifier = "bottomTableCell"
     private let dropDownTableCellIdentifier = "dropDownTableCell"
@@ -20,8 +19,9 @@ class MenuController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Set Current Employee
-        currentDBUser = userManager.getCurrentDBUser()
+        //Set Current User
+        let userManager = UserManager()
+        self.currentDBUser = userManager.getCurrentDBUser()
         
         //Setup View
         self.setupView()

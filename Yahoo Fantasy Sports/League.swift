@@ -30,12 +30,12 @@ public enum Sport: String{
 }
 
 public enum SportsLeague: String{
-    case nfl = "nfl"
-    case mlb = "mlb"
-    case nba = "nba"
-    case nhl = "nhl"
-    case pga = "pga"
-    case mls = "mls"
+    case nfl = "NFL"
+    case mlb = "MLB"
+    case nba = "NBA"
+    case nhl = "NHL"
+    case pga = "PGA"
+    case mls = "MLS"
 }
 
 public enum DraftType: String{
