@@ -13,6 +13,7 @@ class YHTabBarController: UITabBarController, UITabBarControllerDelegate{
     override func viewDidLoad() {
         self.delegate = self
         self.tabBar.tintColor = YHColor.orange
+        self.tabBar.isTranslucent = false
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {

@@ -136,7 +136,10 @@ class DailyFantasyLobbyLeaguesCell: UICollectionViewCell{
             else if league?.entryFee.intValue ?? 0 > 0{
                 entryFee = league?.entryFee.shortNumberString(style: .currency) ?? ""
             }
-            subTitleLabel.text = String(format: "%@ %@ | %@ %@ | %@/%@ %@", entryFee, "entry".localized(), league?.totalPrize.shortNumberString(style: .currency) ?? "", "prizes".localized(), league?.entryCount.shortNumberString(style: .none) ?? "", league?.entryLimit.shortNumberString(style: .none) ?? "", "entries".localized())
+            let totalPrize = league?.totalPrize ?? 0
+            let entryCount = league?.entryCount ?? 0
+            let entryLimit = league?.entryLimit ?? 0
+            subTitleLabel.text = String(format: "%@ %@ | %@ %@ | %@/%@ %@", entryFee, "entry".localized(), totalPrize.shortNumberString(style: .currency), "prizes".localized(), entryCount.shortNumberString(style: .none), entryLimit.shortNumberString(style: .none), "entries".localized())
         }
     }
 }

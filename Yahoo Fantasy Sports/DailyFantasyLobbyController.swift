@@ -171,7 +171,7 @@ class DailyFantasyLobbyController: UIViewController, UICollectionViewDataSource,
             }
             
             self.dailyFantasyLeagues = dailyFantasyLeagues
-            
+            print("daily leagues \(self.dailyFantasyLeagues)")
             //Show Empty View (if necessary)
             if self.dailyFantasyLeagues.count > 0{
                 self.lobbyView.collectionView.backgroundView = nil

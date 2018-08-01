@@ -19,6 +19,10 @@ class LeagueMyTeamController: UIViewController, UITableViewDataSource, UITableVi
     private let settingsCellIdentifier = "settingsCell"
     private let advertisementCellIdentifier = "advertisementCell"
     private let playerCellIdentifier = "playerCell"
+    private var offensePositions = ["QB", "WR", "WR", "RB", "RB", "TE", "W/R/T"]
+    private var kickerPositions = ["K"]
+    private var defensePositions = ["DEF"]
+    private var sectionTitles = ["offense".localized(), "kickers".localized(), "defenseSpecialTeams".localized()]
     
     convenience init(team: DBTeam) {
         self.init()
@@ -118,7 +122,7 @@ class LeagueMyTeamController: UIViewController, UITableViewDataSource, UITableVi
     
     //TableView DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return sectionTitles.count+1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -126,11 +130,11 @@ class LeagueMyTeamController: UIViewController, UITableViewDataSource, UITableVi
         case 0:
             return 4
         case 1:
-            return 7
+            return offensePositions.count
         case 2:
-            return 1
+            return kickerPositions.count
         case 3:
-            return 1
+            return defensePositions.count
         default:
             return 0
         }
@@ -147,12 +151,12 @@ class LeagueMyTeamController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch  section {
-        case 0:
-            return nil
-        default:
+        case _ where section > 0:
             let sectionHeader = LeagueMyTeamPlayerSectionView()
-            sectionHeader.configure(title: "Offense")
+            sectionHeader.configure(title: sectionTitles[section-1])
             return sectionHeader
+        default:
+            return nil
         }
     }
     
@@ -186,9 +190,20 @@ class LeagueMyTeamController: UIViewController, UITableViewDataSource, UITableVi
                 let cell = tableView.dequeueReusableCell(withIdentifier: summaryCellIdentifier, for: indexPath) as! LeagueMyTeamSummaryCell
                 return cell
             }
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: playerCellIdentifier, for: indexPath) as! LeagueMyTeamPlayerCell
+            cell.configure(image: nil, title: "Empty", leftTitle: offensePositions[indexPath.row])
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: playerCellIdentifier, for: indexPath) as! LeagueMyTeamPlayerCell
+            cell.configure(image: nil, title: "Empty", leftTitle: kickerPositions[indexPath.row])
+            return cell
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: playerCellIdentifier, for: indexPath) as! LeagueMyTeamPlayerCell
+            cell.configure(image: nil, title: "Empty", leftTitle: defensePositions[indexPath.row])
+            return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: playerCellIdentifier, for: indexPath) as! LeagueMyTeamPlayerCell
-            cell.configure(image: nil, title: "Empty")
             return cell
         }
     }

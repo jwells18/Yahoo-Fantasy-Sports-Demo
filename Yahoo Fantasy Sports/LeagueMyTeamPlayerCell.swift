@@ -85,8 +85,8 @@ class LeagueMyTeamPlayerCell: UITableViewCell{
         self.addConstraints([NSLayoutConstraint.init(item: spacerViewBottom, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20)])
     }
     
-    func configure(image: UIImage?, title: String?){
-        self.leftTitleLabel.text = "QB"
+    func configure(image: UIImage?, title: String?, leftTitle: String?){
+        self.leftTitleLabel.text = leftTitle
         self.mainImageView.image = image
         self.titleLabel.text = title
     }

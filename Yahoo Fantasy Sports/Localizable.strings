@@ -94,6 +94,9 @@
 "copyLink" = "Copy Link";
 "share" = "Share";
 "allPositions" = "All Positions";
+"offense" = "Offense";
+"kickers" = "Kickers";
+"defenseSpecialTeams" = "Defense/Special Teams";
 "qb" = "QB";
 "wr" = "WR";
 "rb" = "RB";
